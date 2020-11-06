@@ -1,11 +1,12 @@
 '''
-Задача №8
+Задача № 8
 Даны центры равномерно растущих кругов на плоскости. При столкновении друг
 с другом столкнувшиеся круги прекращают свой рост. Найти радиусы кругов, когда
 процесс роста остановится полностью.
 '''
 
 import math
+from matplotlib import pyplot as plt
 def get_centers():
     circles_number = int(input('Enter circles number: '))
     if (circles_number <= 1):
@@ -61,4 +62,21 @@ def calc_rads(circles):
     return circles_r
             
 test = get_centers()
-print(calc_rads(test))
+rads = calc_rads(test)
+print(rads)
+circles = []
+for c in rads:
+    print(c)
+    x = []
+    y = []
+    for alpha in range(0,629):
+        x.append(c[0][0] - c[1]*math.cos(alpha/100))
+        y.append(c[0][1] + c[1]*math.sin(alpha/100))
+    circles.append((x,y))
+
+fig, axes = plt.subplots()
+axes.set_aspect(1)
+for r in rads:
+    axes.scatter(r[0][0], r[0][1], c = 'purple')
+for c in circles:
+    axes.plot(c[0], c[1], c = 'purple')
