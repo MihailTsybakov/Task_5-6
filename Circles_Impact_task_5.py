@@ -46,6 +46,21 @@ def calc_rads(circles):
                     min_d = d
                     nn = c
         return nn
+    '''Вычисление первого столкновения для определённости сисетмы'''
+    c1, c2 = None, None
+    min_d = max_dist
+    for c in circles_r:
+        for c_ in circles_r:
+            if (c[0] != c_[0]):
+                d = dist(c, c_)
+                if (d < min_d):
+                    c1, c2 = c, c_
+                    min_d = d
+    for a in circles_r:
+        if (a[0] == c1[0]):
+            a[1] = min_d/2
+        if (a[0] == c2[0]):
+            a[1] = min_d/2
     for circle in circles_r:
         if (circle[1] != 0):
             continue
@@ -66,7 +81,6 @@ rads = calc_rads(test)
 print(rads)
 circles = []
 for c in rads:
-    print(c)
     x = []
     y = []
     for alpha in range(0,629):
