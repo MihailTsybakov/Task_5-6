@@ -67,6 +67,16 @@ def convex_shell(points):
             break
     return convex_shell, mass_center
 
+def autotest():
+    test_points = [(0,0), (3,3), (6,-3), (1,0)]
+    test_convex_shell = convex_shell(test_points)
+    if (test_convex_shell[0] != [(0,0), (6,-3), (3,3)]):
+        print('Error: autotest not passed.\n')
+        raise SystemExit(-1)
+    print('Autotest passed')
+    
+autotest()
+
 test = get_points()
 conv, mass_center = convex_shell(test)
 print(conv)
