@@ -20,7 +20,7 @@ def get_centers():
                 return 0
     return centers
 
-def calc_rads(circles):
+def circles_impact(circles):
     circles_r = [[circle, 0] for circle in circles]
     '''Евклидово расстояние'''
     def dist(circle_1, circle_2):
@@ -75,9 +75,19 @@ def calc_rads(circles):
             d = dist(nearest_neighbour, circle) - nearest_neighbour[1]
             circle[1] = d
     return circles_r
-            
+
+def autotest():
+    test_arr = [(0,0), (0,1), (3,0)]
+    test_rads = circles_impact(test_arr)
+    if (test_rads[0][1] != 0.5 or test_rads[1][1] != 0.5 or test_rads[2][1] != 2.5):
+        print('Error: autotest not passed.\n')
+        raise SystemExit(-1)
+    print('Autotest passed')
+    
+autotest()
+
 test = get_centers()
-rads = calc_rads(test)
+rads = circles_impact(test)
 print(rads)
 circles = []
 for c in rads:
